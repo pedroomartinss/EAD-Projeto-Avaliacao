@@ -1,10 +1,10 @@
 /**
  * @file Dados.h
- * @author Pedro Martins Nº23527
+ * @author Pedro Martins NÂº23527
  * @date 2022
- * @brief Definições Globais para Lista Ligadas Simples (versão 1)
+ * @brief DefiniÃ§Ãµes Globais para Lista Ligadas Simples (versÃ£o 1)
  *
- *	Structs, Constantes e Assinaturas de Funções  Listas Ligadas Simples
+ *	Structs, Constantes e Assinaturas de FunÃ§Ãµes  Listas Ligadas Simples
 */
 
 #ifndef DADOS
@@ -24,6 +24,7 @@
  */
 typedef struct Maquina {
 	int CodMaquina;
+	char funcao[N];
 	int tempo;	
 }Maquina;
 
@@ -47,7 +48,7 @@ typedef struct Operacao {
 void MostraMaquina(ListaMaquinas* h);
 ListaMaquinas* InsereMaquinaListaMaquinas(ListaMaquinas* h, Maquina* novamaquina);
 ListaMaquinas* CriaNodoListaMaquinas(Maquina* m);
-Maquina* criaMaquina(int cod, int tempo);
+Maquina* criaMaquina(int cod, char* funcao, int tempo);
 
 Operacao* criaOperacao(int cod);
 Operacao* InsereOperacao(Operacao* h, Operacao* nova);
