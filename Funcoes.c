@@ -1,29 +1,24 @@
 /**
-*  @file ListasV2.c
- * @author lufer
+*  @file Funcoes.c
+ * @author Pedro Martins NÂº23527
  * @date 2022
- * @brief Lista Ligadas Simples (versão 1)
- *
- *	Metodos para manipular uma Lista Ligada Simples
-
- * @see http://www.stack.nl/~dimitri/doxygen/docblocks.html
- * @see http://www.stack.nl/~dimitri/doxygen/commands.html
- * @see http://fnch.users.sourceforge.net/doxygen_c.html
- * @bug No known bugs.
+ * @brief Lista Ligadas Simples (versÃ£o 1)
 */
+
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include "Dados.h"
 
-#pragma region Máquinas
+#pragma region MÃ¡quinas
 
-Maquina* criaMaquina(int cod, int tempo)
+Maquina* criaMaquina(int cod, char* funcao, int tempo)
 {
 	Maquina* novaMaquina = (Maquina*)malloc(sizeof(Maquina));
 
 	if (novaMaquina == NULL) return NULL;
 
 	novaMaquina->CodMaquina = cod;
+	strcpy(novaMaquina->funcao, funcao);
 	novaMaquina->tempo = tempo;
 	return novaMaquina;
 }
@@ -39,10 +34,10 @@ ListaMaquinas* CriaNodoListaMaquinas(Maquina* m) {
 
 
 ListaMaquinas* InsereMaquinaListaMaquinas(ListaMaquinas* h, Maquina* novamaquina) {
-	if (novamaquina == NULL)	return h;	//se novo está vazio
+	if (novamaquina == NULL)	return h;	//se novo estÃ¡ vazio
 	//Cria novo nodo da lista de contactos
 	ListaMaquinas* nova = CriaNodoListaMaquinas(novamaquina);
-	if (h == NULL) h = nova;		//se lista está vazia
+	if (h == NULL) h = nova;		//se lista estÃ¡ vazia
 	else {
 		//Assumir que se insere sempre no inicio
 		nova->seguinte = h;
@@ -53,7 +48,7 @@ ListaMaquinas* InsereMaquinaListaMaquinas(ListaMaquinas* h, Maquina* novamaquina
 
 Operacao* InsereMaquinaOperacao(Operacao* h, Maquina* m, int cod) {
 	if (h == NULL) return NULL;	// se lista vazia
-	if (m == NULL) return h;	//se contacto não tem informação
+	if (m == NULL) return h;	//se contacto nÃ£o tem informaÃ§Ã£o
 
 	Operacao* aux = ProcuraOperacao(h, cod);
 	if (aux) {		//se existe essa pessoa
@@ -77,7 +72,7 @@ void MostraMaquina(ListaMaquinas* h) {
 
 
 
-#pragma region Operações
+#pragma region OperaÃ§Ãµes
 
 Operacao* criaOperacao(int cod)
 {
@@ -93,18 +88,18 @@ Operacao* criaOperacao(int cod)
 
 Operacao* InsereOperacao(Operacao* h, Operacao* nova) {
 
-	if (nova == NULL) return h;	//Verificar se apontadores são válidos
+	if (nova == NULL) return h;	//Verificar se apontadores sÃ£o vÃ¡lidos
 
-	//Verificar se o novo jogo já existe!!!
-	if (ExisteOperacao(h, nova->codOperacao)) return h;	//se existir não insere!
+	//Verificar se o novo jogo jÃ¡ existe!!!
+	if (ExisteOperacao(h, nova->codOperacao)) return h;	//se existir nÃ£o insere!
 
-	if (h == NULL)		//Lista está vazia
+	if (h == NULL)		//Lista estÃ¡ vazia
 	{
 		h = nova;
 	}
 	else
 	{
-		nova->seguinte = h;	//aponta para onde "h" está a apontar
+		nova->seguinte = h;	//aponta para onde "h" estÃ¡ a apontar
 		h = nova;
 	}
 	return h;
@@ -129,16 +124,14 @@ bool ExisteOperacao(Operacao* h, int cod) {
 		Operacao* aux = h;
 		if (h = NULL) return NULL;
 		while (aux) {
-			printf("Codigo: %d - Maquinas: %p\n", aux->codOperacao, aux->maquinas);
+			printf("Codigo: %d \n", aux->codOperacao);
 			aux = aux->seguinte;
 		}
-
-		
 	}
 
 Operacao* RemoveOperacao(Operacao* h, int cod) {
 	if (h == NULL) return NULL;			//Lista vazia
-	//if (!ExisteJogo(h, cod)) return h;	//se não existe
+	//if (!ExisteJogo(h, cod)) return h;	//se nÃ£o existe
 
 	if (h->codOperacao == cod) {		//remove no inicio da lista
 		Operacao* aux = h;
