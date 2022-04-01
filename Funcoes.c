@@ -63,7 +63,7 @@ void MostraMaquina(ListaMaquinas* h) {
 	if (h = NULL) return NULL;
 	while (aux) {
 		
-		printf("Cod maquina: %d - Tempo: %d\n", aux->maquina.CodMaquina, aux->maquina.tempo);
+		printf("Cod maquina: %d - Funcao: %s - Tempo: %d\n", aux->maquina.CodMaquina, aux->maquina.funcao, aux->maquina.tempo);
 		aux = aux->seguinte;
 	}
 	printf("\n");
