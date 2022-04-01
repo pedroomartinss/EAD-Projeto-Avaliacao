@@ -27,6 +27,7 @@ Maquina* criaMaquina(int cod, char* funcao, int tempo)
 ListaMaquinas* CriaNodoListaMaquinas(Maquina* m) {
 	ListaMaquinas* nova = (ListaMaquinas*)malloc(sizeof(ListaMaquinas));
 	nova->maquina.CodMaquina = m->CodMaquina;
+	strcpy(nova->maquina.funcao, m->funcao);
 	nova->maquina.tempo = m->tempo;
 	nova->seguinte = NULL;
 	return nova;
